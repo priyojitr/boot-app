@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.msvc.samplebootapp.model.EmployeeModel;
+import com.demo.msvc.samplebootapp.model.UserModel;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin()
 @RestController
 @RequestMapping("/employees")
 public class HomeController {
@@ -48,6 +49,12 @@ public class HomeController {
 		emps.add(emp);
 		log.info("{}", emps);
 		return new ResponseEntity<>(emps, HttpStatus.CREATED);
+	}
+
+	// validate user login
+	@GetMapping(value ="/validateLogin", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public UserModel validateLogin() {
+		return new UserModel("user validated");
 	}
 
 	private List<EmployeeModel> getEmployees() {

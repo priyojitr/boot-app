@@ -24,7 +24,7 @@
 		<Logger name="com.demo.msvc">
 			<AppenderRef ref="console" level="debug" />
 		</Logger>
-		<Root level="trace">
+		<Root level="debug">
 			<AppenderRef ref="filelog" />
 		</Root>
 	</Loggers>

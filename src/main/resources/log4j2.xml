@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration>
+<Configuration name="bootapp-log">
+	<Properties>
+		<Property name="log-path">logs</Property>
+		<Property name="filename">app.log</Property>
+		<Property name="log-pattern">%d{HH:mm:ss,SSS} %-5p [%c{1.}:%L] %m%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${log-pattern}" />
+		</Console>
+		<RollingFile name="filelog"
+			filename="${log-path}/${filename}"
+			filePattern="${log-path}/%d{yyyyMMdd}-%i-${filename}">
+			<PatternLayout pattern="${log-pattern}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="5" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.demo.msvc">
+			<AppenderRef ref="console" level="debug" />
+		</Logger>
+		<Root level="trace">
+			<AppenderRef ref="filelog" />
+		</Root>
+	</Loggers>
+</Configuration>
